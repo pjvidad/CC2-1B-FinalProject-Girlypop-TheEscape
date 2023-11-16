@@ -1,4 +1,5 @@
 import time
+from island_map import loadMap
 
 def scene1():
     print("\n========================================================================================================================")
@@ -52,15 +53,12 @@ After weeks of searching for the unknown, he has finally stumbled upon the deep 
         print(char, end='')
         time.sleep(.5)
 
-    forestMap() #redirect the user to the forest map
-
+    forestMap() 
 
 def forestMap():
-    hasWon = False
+    hasNotWon = True
 
-    #load map then fightfightfight
-
-    if (hasWon):
-        #eh di congrats
-        #go back to main menu and ask if they want to start again
-        pass
+    if (hasNotWon):
+        loadMap()
+    elif (not hasNotWon):
+        print("Congrats yey! You attained nirvana sheesh!")
