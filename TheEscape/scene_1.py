@@ -52,7 +52,7 @@ After weeks of searching for the unknown, he has finally stumbled upon the deep 
     typewriterEffect(loadingText)
     print()
 
-    instructions = """INSTRUCTIONS:
+    instructions = """\nINSTRUCTIONS:
 
 1. Explore the island by moving around the map. You can move up [W], down [S], left [A], or right [D].
 2. After moving 5 times, combat begins! Prepare for battle.
@@ -65,8 +65,9 @@ Colliding with a surprise may affect your HP either negatively or positively. Yo
 
 Get ready for an exciting adventure! May you conquer the challenges of the island.
 """
-
+    
     print(instructions)
+    input("Press enter to continue...")
 
     loadIslandMap()
 
