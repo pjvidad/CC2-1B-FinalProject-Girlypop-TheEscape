@@ -52,6 +52,22 @@ After weeks of searching for the unknown, he has finally stumbled upon the deep 
     typewriterEffect(loadingText)
     print()
 
+    instructions = """INSTRUCTIONS:
+
+1. Explore the island by moving around the map. You can move up [W], down [S], left [A], or right [D].
+2. After moving 5 times, combat begins! Prepare for battle.
+3. Exchange three attacks with the enemy before you can retreat and leave combat.
+4. If you collide with an enemy, the combat mode starts automatically.
+5. Keep an eye out for surprises marked with "[?]" on the map. \n 
+Colliding with a surprise may affect your HP either negatively or positively. You might also encounter a random enemy so watch out.
+6. Watch out for trees marked with "[#]" — you can't collide with them (deerrr).
+7. To quit the game, simply input "quit" at any user prompt.
+
+Get ready for an exciting adventure! May you conquer the challenges of the island.
+"""
+
+    print(instructions)
+
     loadIslandMap()
 
 
@@ -366,15 +382,14 @@ def move_player(island_map, player_x, player_y, enemy_x, enemy_y, direction, mov
     if surprise_event:
         surprise = {
         'Health Potion': 20,
-        'Extra Buff': 10,
         'Lucky Charm': 5,
-        'Bear Trap': -5,
         'Venomous Snakes': -10,
         'Cursed Relic': -20,
+        'Minion of the Enemy Boss' : -40,
         'Nothing': 0
         }
 
-        surprise_list = ("Health Potion", "Extra Buff", "Lucky Charm", "Bear Trap", "Venomous Snakes", "Cursed Relic", "Nothing")
+        surprise_list = ("Health Potion", "Lucky Charm", "Venomous Snakes", "Cursed Relic", "Minion of the Enemy Boss", "Nothing")
 
         input("You reached a surprise area. Press enter to see what you got...")
         random_surprise = random.choice(surprise_list)
@@ -416,8 +431,6 @@ def loadIslandMap():
         island_map, player_x, player_y, enemy_x, enemy_y = generate_island_map(map_width, map_height)
 
         # Main game loop
-        inGame = True
-        #setting this to False mean breaking out of the inGame while loop, terminating the game
         move_counter = 0
 
     while inGame:
