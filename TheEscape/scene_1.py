@@ -60,14 +60,17 @@ After weeks of searching for the unknown, he has finally stumbled upon the deep 
 4. If you collide with an enemy, the combat mode starts automatically.
 5. Keep an eye out for surprises marked with "[?]" on the map. \n 
 Colliding with a surprise may affect your HP either negatively or positively. You might also encounter a random enemy so watch out.
-6. Watch out for trees marked with "[#]" — you can't collide with them (deerrr).
+6. Watch out for trees marked with "[#]" — you can't collide with them.
 7. To quit the game, simply input "quit" at any user prompt.
 
 Get ready for an exciting adventure! May you conquer the challenges of the island.
+
+[ @  ] - player
+[ ☠️  ] - enemy
 """
     
     print(instructions)
-    input("Press enter to continue...")
+    input("\nPress enter to continue...")
 
     loadIslandMap()
 
@@ -96,7 +99,7 @@ symbols = {
     'trace': '"',
     'tree': '#',
     'surprise': '?',
-    'player': '✌️',
+    'player': '@',
     'enemy': '☠️'
 }
 
