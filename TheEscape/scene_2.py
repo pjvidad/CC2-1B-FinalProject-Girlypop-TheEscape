@@ -8,7 +8,16 @@ def scene2():
     print("\n=======================================================================================")
     print()
 
-    story = """[scene 2 storyyy]"""
+    story = """story = """Exhausted and bloodied, Eljin stood still with a beam and unwavering resolve, his passion continuing to burn brighter than it ever did.\n\
+With his newly founded [ insert weapon or skills ], he ventured the deep unknown courageously. As the sun began to set and the sky gradually dims the sounds of horror from unknown creatures rang throughout the zone.\n\
+Eljin looked up the dark blue sky glittered with twinkling stars, and the Aurora Borealis in sight, he paused for a moment to reminisce the memories with the people in his small village, and it is the first time in his 21 years of life that he had longed for his parents’ touch.\n\
+In a shallow cave, guarded by gigantic trees, its shadows serving as protection, he set up his tent that will serve as his home for the next few months.\n\
+In the middle of nowhere, the smell of freshly made fried chicken surrounded the area, and warmth began to embrace our hero. And as the moon beams, Eljin slowly drifts to sleep.\n\
+But the night did not end just there. In the dark forest comes Jephomet.\n\
+“How amusing. A young lad taking a soundly slumber in my own den. Tsk. Looks like someone is looking for trouble.” Jephomet smirked and casted a spell on the sleeping lad.\n\
+Soon, he found himself in a new environment, confused and dazed, he looked around trying to study the new place he teleported to. Dazzling water springs, heavenly music, and flower paths surrounded our hero.\n\
+“Where…-” The Earth rumbled, walls started to form from the ground, and suddenly, the heavenly site was replaced with horror.\n \n\
+Help Eljin find his way out of this hellish rumble. """"""
 
     typewriterEffect(story)
 
