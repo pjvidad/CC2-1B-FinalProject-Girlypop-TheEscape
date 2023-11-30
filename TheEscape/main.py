@@ -23,6 +23,7 @@ def startGame():
     user_input = input("Enter an option: ")
     if user_input == '1':
         scene1()
+        scene2()
     elif user_input == '2':
         credits()
     elif user_input == '3':
