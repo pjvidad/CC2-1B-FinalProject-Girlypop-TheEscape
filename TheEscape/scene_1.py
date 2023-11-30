@@ -387,9 +387,9 @@ def move_player(island_map, player_x, player_y, enemy_x, enemy_y, direction, mov
         surprise = {
         'Health Potion': 20,
         'Lucky Charm': 5,
-        'Venomous Snakes': -10,
-        'Cursed Relic': -20,
-        'Minion of the Enemy Boss' : -40,
+        'Venomous Snakes': -5,
+        'Cursed Relic': -10,
+        'Minion of the Enemy Boss' : -20,
         'Nothing': 0
         }
 
@@ -402,6 +402,9 @@ def move_player(island_map, player_x, player_y, enemy_x, enemy_y, direction, mov
         if random_surprise in surprise:
             if surprise[random_surprise] >= 0:
                 input(f"You got {random_surprise}! That's worth {surprise[random_surprise]} points of HP!")
+                player_stats['hp'] += surprise[random_surprise]
+            elif surprise[random_surprise] < 0:
+                input(f"Oh no! You encountered a {random_surprise}! That's worth {surprise[random_surprise]} points of HP!")
                 player_stats['hp'] += surprise[random_surprise]
 
 
