@@ -22,12 +22,8 @@ def startGame():
 
     user_input = input("Enter an option: ")
 
-    if user_input == '1':
-        sceneList = (scene1, scene2) 
-        #this is a list of the different scenes, which are functions
-
-        random.choice(sceneList)()
-        #we are randomly selecting a choice from any of the functions inside the sceneList
+   if user_input == '1':
+        scene1()
     elif user_input == '2':
         credits()
     elif user_input == '3':
