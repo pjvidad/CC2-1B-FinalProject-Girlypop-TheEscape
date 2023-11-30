@@ -450,7 +450,7 @@ def loadIslandMap():
         )
 
         if not inGame:
-            input("Press enter to return to go back to Main Menu...")
+            input("Press enter to return to continue...")
             import scene_2
             scene_2
 
