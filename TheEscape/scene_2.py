@@ -39,7 +39,7 @@ Colliding with a surprise may affect your HP either negatively or positively. Yo
 Get ready for an exciting adventure! May you conquer the challenges of the enigmatic castle.
 
 [ @  ] - player
-[ ☠️  ] - enemy
+[ ️X  ] - enemy
 """
     print(instructions)
     input("\nPress enter to continue...")
@@ -70,7 +70,7 @@ symbols = {
     'room': 'R',
     'surprise': '?',
     'player': '@',
-    'enemy': '☠️',
+    'enemy': '️X',
     'wall': '|',
 }
 
