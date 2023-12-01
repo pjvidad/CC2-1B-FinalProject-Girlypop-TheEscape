@@ -452,14 +452,14 @@ def loadIslandMap():
             island_map, player_x, player_y, enemy_x, enemy_y, move_direction, move_counter
         )
 
-    if not inGame:
-        if player_stats['hp'] <= 0:
-            input("Press enter to go back to main menu. . .")
-            import main
-            main
-        else:
-            input("Press enter to continue...")
-            import scene_2
-            scene_2
+        if not inGame:
+            if player_stats['hp'] <= 0:
+                input("Press enter to go back to main menu. . .")
+                import main
+                main
+            else:
+                input("Press enter to continue...")
+                import scene_2
+                scene_2
 
-        break
+            break
