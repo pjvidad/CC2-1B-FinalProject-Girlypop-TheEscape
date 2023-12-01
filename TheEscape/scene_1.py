@@ -66,7 +66,7 @@ Colliding with a surprise may affect your HP either negatively or positively. Yo
 Get ready for an exciting adventure! May you conquer the challenges of the island.
 
 [ @  ] - player
-[ ☠️  ] - enemy
+[ x ] - enemy
 """
     
     print(instructions)
@@ -100,7 +100,7 @@ symbols = {
     'tree': '#',
     'surprise': '?',
     'player': '@',
-    'enemy': '☠️'
+    'enemy': 'X'
 }
 
 # Player and enemy initial stats
