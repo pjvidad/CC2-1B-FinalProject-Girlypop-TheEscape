@@ -386,7 +386,7 @@ def move_player(island_map, player_x, player_y, enemy_x, enemy_y, direction, mov
     if surprise_event:
         surprise = {
         'Health Potion': 20,
-        'Lucky Charm': 5,
+        'Lucky Charm': 10,
         'Venomous Snakes': -5,
         'Cursed Relic': -10,
         'Minion of the Enemy Boss' : -20,
