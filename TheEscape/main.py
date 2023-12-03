@@ -1,5 +1,5 @@
 import time, sys, random
-from test import Game2
+from scene_2 import Game2
 from scene_1 import Game1, Typewriter
 
 def startGame():
