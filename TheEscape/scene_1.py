@@ -153,6 +153,25 @@ def generate_island_map(width, height):
 def print_island_map(island_map):
     os.system('cls' if os.name == 'nt' else 'clear')  # Clear the console
 
+island_map = [
+    # Your island map rows go here
+]
+
+legend_items = {
+    "Player": "[@]",
+    "Enemy": "[☠️]",
+    "Surprise": "[?]",
+    "Tree": "#", 
+    "Boundary": ",", 
+}
+
+def display_legend():
+    print("\nMap Legends:")
+    for item, symbol in legend_items.items():
+        print(f"{item}: {symbol}")
+
+display_legend()
+
     # Print the map with borders
     print('+' + '-' * (len(island_map[0]) * 2 - 1) + '+')
     for row in island_map:
