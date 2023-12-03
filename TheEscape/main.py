@@ -1,9 +1,9 @@
-import random, time, sys
-from scene_1 import scene1, typewriterEffect
-from scene_2 import scene2
+import time, sys, random
+from test import Game2
+from scene_1 import Game1, Typewriter
 
 def startGame():
-    print("""
+    print("""\
         █░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀   ▀█▀ █▀█
         ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄   ░█░ █▄█""")
     print("""
@@ -21,9 +21,10 @@ def startGame():
     print()
 
     user_input = input("Enter an option: ")
+
     if user_input == '1':
-        scene1()
-        scene2()
+        games = (Game1, Game2)
+        random.choice(games)()
     elif user_input == '2':
         credits()
     elif user_input == '3':
@@ -45,10 +46,9 @@ def credits():
     print("\n=======================================================================================")
 
     creditsIntro = "The geniuses behind The Escape!\n \n"
-    typewriterEffect(creditsIntro)
+    Typewriter.type_effect(creditsIntro)
 
-    loadingText = "..."
-    typewriterEffect(loadingText)
+    Typewriter.type_effect("...")
     
     print("GIRLY POP!")
     print()
