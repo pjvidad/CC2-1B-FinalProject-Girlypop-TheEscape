@@ -138,6 +138,27 @@ def generate_castle_map(width, height):
 def print_castle_map(castle_map):
     os.system('cls' if os.name == 'nt' else 'clear')  # Clear the console
 
+castle_map = [
+    # Your castle map rows go here
+]
+
+legend_items = {
+    "Player": "[@]",
+    "Enemy": "[☠️]",
+    "Surprise": "[?]",
+    "Tree": "[#]",
+    "Boundary": "[,]",
+    "Room": "R",
+    "Wall": "|",
+}
+
+def display_legend():
+    print("\nMap Legends:")
+    for item, symbol in legend_items.items():
+        print(f"{item}: {symbol}")
+
+display_legend()
+
     # Print the map with borders
     print('+' + '-' * (len(castle_map[0]) * 2 - 1) + '+')
     for row in castle_map:
