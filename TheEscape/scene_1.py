@@ -1,7 +1,4 @@
-import time
-import random
-import os
-import sys
+import time, random, os, sys
 
 class Typewriter:
     @staticmethod
@@ -29,35 +26,62 @@ def story():
         skip_story = input("Island Game loaded. Do you want to skip the story? [Y/N] ").lower()
 
         if skip_story == 'n':
-            story = """Year 854. \n \n\
-Peace has reigned in the heavens and the Earth after 2000 long years of war between angels and devils.\n\
-It was peaceful they said, where laughter of children rang, and songs of glory were sung in choirs.\n\
-The grass dances with the wind, the birds sing songs of freedom, everything is peaceful.\n\
-The cry of a new born baby sounded across the small village. \n\
-“IT'S A BOY!” announced by the physician, and everyone clapped and exclaimed their excitement. \n\
-A new baby boy was born, not a royal, nor divine, but every birth is celebrated as a baby symbolizes a new hope. \n\
-Everyone cheered and celebrated, tears of joy were raining, and everyone was just enormously grateful. \n\
-The family was showered with love and support. Everything is peaceful.  \n\
-But one shouldn't be blinded by the beauty of it all. \n \n\
-In the deep dark forest, remnants of the dead were lingering. Those mortals who were caught between the war of \n\
-angels and devils suffered the most gut-wrenching and insufferable consequences. 80%. \n\
-It was believed that 80% of the world's population vanished in just a flash. But it was also that same forest where a child, \n\
-5 years of age, watched longingly to the joyous village full of happiness.\n\
-No one celebrated his birth with him, he was a child abandoned, and only the devil spirits had been the one raising this little lad.\n\
-And as the child grew, so did his hatred. And thus, no one should set foot in this forest hidden at the edge of the Earth. \n \n\
-Year 875. \n \n\
-Eljin had just celebrated his 21st birthday, and his only wish was to explore the world beyond the village's borders.\n\
-His parents were worried, of course. No one has ever set foot outside the village, no one dared to see the outside world. \n\
-But his courage, and his love for adventures urged him to go forward, and explore more than any human has explored. \n\
-After weeks of searching for the unknown, he has finally stumbled upon the deep dark path and decided to move forward.\n \n\
+
+            story1 = """\n \nYear 854.
+
+Peace has reigned in the heavens and the Earth after 2000 long years of war between angels and devils.
+It was peaceful they said, where laughter of children rang, and songs of glory were sung in choirs.
+The grass dances with the wind, the birds sing songs of freedom, everything is peaceful.
+The cry of a new born baby sounded across the small village.
+“IT'S A BOY!” announced by the physician, and everyone clapped and exclaimed their excitement.
+A new baby boy was born, not a royal, nor divine, but every birth is celebrated as a baby symbolizes a new hope.
+Everyone cheered and celebrated, tears of joy were raining, and everyone was just enormously grateful.
+The family was showered with love and support. Everything is peaceful.
+But one shouldn't be blinded by the beauty of it all.
+
+In the deep dark forest, remnants of the dead were lingering. Those mortals who were caught between the war of
+angels and devils suffered the most gut-wrenching and insufferable consequences. 80%.
+It was believed that 80% of the world's population vanished in just a flash. But it was also that same forest where a child,
+5 years of age, watched longingly to the joyous village full of happiness.
+No one celebrated his birth with him, he was a child abandoned, and only the devil spirits had been the one raising this little lad.
+And as the child grew, so did his hatred. And thus, no one should set foot in this forest hidden at the edge of the Earth.
+
+Year 875.
+
+Eljin had just celebrated his 21st birthday, and his only wish was to explore the world beyond the village's borders.
+His parents were worried, of course. No one has ever set foot outside the village, no one dared to see the outside world.
+But his courage, and his love for adventures urged him to go forward, and explore more than any human has explored.
+After weeks of searching for the unknown, he has finally stumbled upon the deep dark path and decided to move forward. \n \n\
 """
-            Typewriter.type_effect(story)
+
+            story2 = """\n \nIt wasn't easy exploring an unknown path, surviving the lonely nights, and fighting the great unknown all by yourself. 
+It's terrifying and daunting, leaving our hero Eljin, in great horror. Fighting the last battle was like fighting an army all alone.
+It drains our hero's energy and physical health, giving the monsters the upper hand, but despite the obvious disadvantage,
+he is still determined and has a strong will to continue fighting for the future he hoped for and the land he seeks to find.
+And as the sun began to bring color to the world, he set off again and to the unknown world, ready to fight whatever comes his way. 
+
+Walking down the path just admiring the lovely view of the sunrise definitely healed our hero's tainted heart. 
+It calmed the uneasiness that surrounded him for the past 48 hours, and as if he could breathe once again. 
+But of course, still in the devils den, dangers meant to come chasing him everywhere he goes. 
+
+“Hello there, sweet child.” a beautiful and dazzling fairy greeted him. 
+“Are you lost?” He nodded slowly. 
+Satisfied with his answer, the dazzling fairy smiled. “Come, I'll show you the way…” 
+
+And so he did. \n \n\
+"""
+
+            story_list = (story1, story2)
+            print()
+            Typewriter.type_effect("...")
+            Typewriter.type_effect(random.choice(story_list))
 
             Typewriter.type_effect("...")
         elif skip_story == 'y':
             break
         else:
             continue
+        break
     print()
 
     instructions = """\nINSTRUCTIONS:
@@ -79,9 +103,9 @@ Get ready for an exciting adventure! May you conquer the challenges of the islan
     print(instructions)
     input("\nPress enter to continue...")
 
-    # resetting settings
-    global inGame
-    inGame = True
+    # resetting settings after restarting
+    global in_game
+    in_game = True
     global player_stats, enemy_stats
     player_stats = {'hp': 100}
     enemy_stats = {'hp': 100}
@@ -92,8 +116,8 @@ class Game1:
     player_stats = {'hp': 100}
     enemy_stats = {'hp': 100}
 
-    global inGame
-    inGame = True
+    global in_game
+    in_game = True
 
     # Define map symbols at the global level
     symbols = {
@@ -109,9 +133,7 @@ class Game1:
     def __init__(self):
         story()
 
-        if inGame:
-            #print instructions here
-
+        if in_game:
             # Set the size of the map
             map_width = 30
             map_height = 20
@@ -122,7 +144,7 @@ class Game1:
         # Main game loop
         move_counter = 0
 
-        while inGame:
+        while in_game:
             # Print the map
             self.print_island_map(island_map)
 
@@ -134,7 +156,7 @@ class Game1:
                 island_map, player_x, player_y, enemy_x, enemy_y, move_direction, move_counter
             )
 
-            if not inGame:
+            if not in_game:
                 input("Press enter to return to Main Menu...")
                 Typewriter.type_effect("...")
                 print()
@@ -144,7 +166,7 @@ class Game1:
                 main
 
                 break
-                # should go to main menu
+                # go back to main menu
 
     def generate_island_map(self, width, height):
 
@@ -193,7 +215,7 @@ class Game1:
     def display_legend(self):
         legend_items = {
             "Player": "[@]",
-            "Enemy": "[☠️]",
+            "Enemy": "[X]",
             "Surprise": "[?]",
             "Tree": "#", 
             "Boundary": ",", 
@@ -216,7 +238,7 @@ class Game1:
         print('+' + '-' * (len(island_map[0]) * 2 - 1) + '+')
     
     def move_player(self, island_map, player_x, player_y, enemy_x, enemy_y, direction, move_counter):
-        global inGame
+        global in_game
 
         #for every move of the player, check if the enemy's hp falls below 0
         if enemy_stats['hp'] <= 0:
@@ -226,7 +248,7 @@ class Game1:
                 print(" ==============================================  ")
                 print("\n")
                 
-                inGame = False
+                in_game = False
 
         #for every move of the player, check if the player's hp falls below 0
         if player_stats['hp'] <= 0:
@@ -236,7 +258,7 @@ class Game1:
                 print(" ======================================== ")
                 print("\n")
                 
-                inGame = False
+                in_game = False
 
         new_x, new_y = player_x, player_y
         surprise_event = False
@@ -350,18 +372,18 @@ class Game1:
     
 
     def combat(self, player_stats, enemy_stats):
-        global inGame
+        global in_game
         print()
         print(">>>>> Battle starts! <<<<<")
 
         player_attack_count = 0  # Counter for player attacks
 
-        inCombat = True
-        while inCombat:
+        in_combat = True
+        while in_combat:
             self.player_attack(enemy_stats)
             player_attack_count += 1
             # after attacking the enemy, increase player_attack_count
-            # when it reaches 3 or the player has attacked the enemy thrice, they should be able to retreat
+            # when it reaches a certain condition, they should be able to have the option to retreat
 
             if player_attack_count >= random.randint(5,7):
                 continue_combat = input("\nThe battle is looking dire! Do you wish to escape? [Y/N] ").lower()
@@ -393,8 +415,8 @@ class Game1:
                 print(" ============================================ ")
                 print("\n")
                 
-                inGame = False
-                inCombat = False
+                in_game = False
+                in_combat = False
                 break
 
             # Simulate enemy's turn
@@ -407,15 +429,15 @@ class Game1:
                 print(" ======================================== ")
                 print("\n")
                 
-                inGame = False
-                inCombat = False
+                in_game = False
+                in_combat = False
                 break
     
     def enemy_attack(self, player_stats, enemy_stats):
-        global inGame
+        global in_game
 
         # Simulate enemy attacking player
-        damage = random.randint(8, 20) #the damage the enemy inflict on you will be between 15 to 20
+        damage = random.randint(8, 20) #the damage the enemy inflict on you will be between 8 to 20
         player_stats['hp'] -= damage
 
         print()
@@ -441,10 +463,10 @@ class Game1:
             print(" ======================================== ")
             print("||  You have been defeated. GAME OVER.  ||")
             print(" ======================================== ")
-            inGame = False
+            in_game = False
 
     def player_attack(self, enemy_stats):
-        global inGame
+        global in_game
 
         print()
         print("+--------------------------------+")
