@@ -1,6 +1,4 @@
-import random
-import time
-import os
+import random, time, os
 from scene_1 import Typewriter
 
 def story():
@@ -11,17 +9,29 @@ def story():
         skip_story = input("Castle Game loaded. Do you want to skip the story? [Y/N] ").lower()
 
         if skip_story == 'n':
-            story = """Exhausted and bloodied, Eljin stood still with a beam and unwavering resolve, his passion continuing to burn brighter than it ever did.\n\
-With his newly founded [ insert weapon or skills ], he ventured the deep unknown courageously. As the sun began to set and the sky gradually dims the sounds of horror from unknown creatures rang throughout the zone.\n\
-Eljin looked up the dark blue sky glittered with twinkling stars, and the Aurora Borealis in sight, he paused for a moment to reminisce the memories with the people in his small village, and it is the first time in his 21 years of life that he had longed for his parents’ touch.\n\
-In a shallow cave, guarded by gigantic trees, its shadows serving as protection, he set up his tent that will serve as his home for the next few months.\n\
-In the middle of nowhere, the smell of freshly made fried chicken surrounded the area, and warmth began to embrace our hero. And as the moon beams, Eljin slowly drifts to sleep.\n\
-But the night did not end just there. In the dark forest comes Jephomet.\n\
-“How amusing. A young lad taking a soundly slumber in my own den. Tsk. Looks like someone is looking for trouble.” Jephomet smirked and casted a spell on the sleeping lad.\n\
-Soon, he found himself in a new environment, confused and dazed, he looked around trying to study the new place he teleported to. Dazzling water springs, heavenly music, and flower paths surrounded our hero.\n\
-“Where…-” The Earth rumbled, walls started to form from the ground, and suddenly, the heavenly site was replaced with horror.\n \n\
-Help Eljin find his way out of this hellish rumble. """
+            story = """\n \nExhausted and bloodied, Eljin stood still with a beam and unwavering resolve, his passion continuing to burn brighter than it ever did.
+With his newly founded weapon, he ventured the deep unknown courageously. As the sun began to set and the sky gradually dims,
+the sounds of horror from unknown creatures rang throughout the zone. Eljin looked up the dark blue sky glittered with twinkling stars, 
+and the Aurora Borealis in sight, he paused for a moment to reminisce the memories with the people in his small village, 
+and it is the first time in his 21 years of life that he had longed for his parents' touch. In a shallow cave, guarded by gigantic trees, 
+its shadows serving as protection, he set up his tent that will serve as his home for the next few months.
+In the middle of nowhere, the smell of freshly made fried chicken surrounded the area, and warmth began to embrace our hero. 
+And as the moon beams, Eljin slowly drifts to sleep.
 
+But the night did not end just there. 
+In the dark forest comes Jephomet.
+
+“How amusing. A young lad taking a soundly slumber in my own den. Tsk. Looks like someone is looking for trouble.” 
+Jephomet smirked and casted a spell on the sleeping lad. Soon, he found himself in a new environment, confused and dazed, 
+he looked around trying to study the new place he teleported to. Dazzling water springs, heavenly music, and flower paths surrounded our hero.
+
+“Where…-” 
+
+The Earth rumbled, walls started to form from the ground, and suddenly, the heavenly site was replaced with horror.
+Help Eljin find his way out of this hellish rumble.\n \n\
+"""
+            print()
+            Typewriter.type_effect("...")
             Typewriter.type_effect(story)
 
             Typewriter.type_effect("...")
@@ -29,6 +39,7 @@ Help Eljin find his way out of this hellish rumble. """
             break
         else:
             continue
+        break
     print()
 
     instructions = """\nINSTRUCTIONS:
@@ -50,8 +61,8 @@ Get ready for an exciting adventure! May you conquer the challenges of the enigm
     input("\nPress enter to continue...")
 
     # resetting settings
-    global inGame
-    inGame = True
+    global in_game
+    in_game = True
     global player_stats, enemy_stats
     player_stats = {'hp': 100}
     enemy_stats = {'hp': 100}
@@ -63,8 +74,8 @@ class Game2:
     player_stats = {'hp': 100}
     enemy_stats = {'hp': 100}
 
-    global inGame
-    inGame = True
+    global in_game
+    in_game = True
 
     # Define map symbols at the global level
     symbols = {
@@ -81,7 +92,7 @@ class Game2:
     def __init__(self):
         story()
 
-        if inGame:
+        if in_game:
             # Set the size of the map
             map_width = 30
             map_height = 20
@@ -92,7 +103,7 @@ class Game2:
             move_counter = 0
 
 
-        while inGame:
+        while in_game:
             # Print the map
             self.print_castle_map(castle_map)
 
@@ -104,7 +115,7 @@ class Game2:
                 castle_map, player_x, player_y, enemy_x, enemy_y, move_direction, move_counter
             )
 
-            if not inGame:
+            if not in_game:
                 input("\nPress enter to return to Main Menu...")
                 Typewriter.type_effect("...")
                 print()
@@ -177,7 +188,7 @@ class Game2:
     def display_legend(self):
         legend_items = {
             "Player": "[@]",
-            "Enemy": "[☠️]",
+            "Enemy": "[X]",
             "Surprise": "[?]",
             "Tree": "[#]",
             "Boundary": "[,]",
@@ -203,7 +214,7 @@ class Game2:
         print('+' + '-' * (len(castle_map[0]) * 2 - 1) + '+')
     
     def move_player(self, castle_map, player_x, player_y, enemy_x, enemy_y, direction, move_counter):
-        global inGame
+        global in_game
 
         #for every move of the player, check if the enemy's hp falls below 0
         if enemy_stats['hp'] <= 0:
@@ -213,7 +224,7 @@ class Game2:
                 print(" ==============================================  ")
                 print("\n")
                 
-                inGame = False
+                in_game = False
 
         #for every move of the player, check if the player's hp falls below 0
         if player_stats['hp'] <= 0:
@@ -223,7 +234,7 @@ class Game2:
                 print(" ======================================== ")
                 print("\n")
                 
-                inGame = False
+                in_game = False
 
         new_x, new_y = player_x, player_y
         surprise_event = False
@@ -343,18 +354,18 @@ class Game2:
     
 
     def combat(self, player_stats, enemy_stats):
-        global inGame
+        global in_game
         print()
         print(">>>>> Battle starts! <<<<<")
 
         player_attack_count = 0  # Counter for player attacks
 
-        inCombat = True
-        while inCombat:
+        in_combat = True
+        while in_combat:
             self.player_attack(enemy_stats)
             player_attack_count += 1
             # after attacking the enemy, increase player_attack_count
-            # when it reaches 3 or the player has attacked the enemy thrice, they should be able to retreat
+            # when it reaches a certain condition, they should be able to have the option to retreat
 
             if player_attack_count >= random.randint(5,7):
                 continue_combat = input("\nThe battle is looking dire! Do you wish to escape? [Y/N] ").lower()
@@ -386,8 +397,8 @@ class Game2:
                 print(" ============================================ ")
                 print("\n")
                 
-                inGame = False
-                inCombat = False
+                in_game = False
+                in_combat = False
                 break
 
             # Simulate enemy's turn
@@ -400,15 +411,15 @@ class Game2:
                 print(" ======================================== ")
                 print("\n")
                 
-                inGame = False
-                inCombat = False
+                in_game = False
+                in_combat = False
                 break
     
     def enemy_attack(self, player_stats, enemy_stats):
-        global inGame
+        global in_game
 
         # Simulate enemy attacking player
-        damage = random.randint(8, 20) #the damage the enemy inflict on you will be between 15 to 20
+        damage = random.randint(8, 20) #the damage the enemy inflict on you will be between 8 to 20
         player_stats['hp'] -= damage
 
         print()
@@ -434,11 +445,11 @@ class Game2:
             print(" ======================================== ")
             print("||  You have been defeated. GAME OVER.  ||")
             print(" ======================================== ")
-            inGame = False
+            in_game = False
 
 
     def player_attack(self, enemy_stats):
-        global inGame
+        global in_game
 
         print()
         print("+--------------------------------+")
@@ -482,7 +493,7 @@ class Game2:
             import main
             main
             
-            inGame = False
+            in_game = False
         else:
             print("\n!!! Invalid choice. You missed the attack. !!!")
         
