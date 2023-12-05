@@ -2,8 +2,10 @@ import time, sys, random
 from scene_2 import Game2
 from scene_1 import Game1, Typewriter
 
-def startGame():
-    print("""\
+def start_game():
+    print()
+
+    print("""
         █░█░█ █▀▀ █░░ █▀▀ █▀█ █▀▄▀█ █▀▀   ▀█▀ █▀█
         ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █░▀░█ ██▄   ░█░ █▄█""")
     print("""
@@ -28,13 +30,13 @@ def startGame():
     elif user_input == '2':
         credits()
     elif user_input == '3':
-        global isPlaying 
+        global is_playing 
         #global makes isPlaying accessible inside this function
 
         print("\nThank you for playing The Escape!")
         print("Quote dito huehuehue")
 
-        isPlaying = False
+        is_playing = False
         sys.exit()
     else: 
         #if player entered a number other than 1, 2, or 3
@@ -45,8 +47,8 @@ def credits():
 
     print("\n=======================================================================================")
 
-    creditsIntro = "The geniuses behind The Escape!\n \n"
-    Typewriter.type_effect(creditsIntro)
+    credits_intro = "The geniuses behind The Escape!\n \n"
+    Typewriter.type_effect(credits_intro)
 
     Typewriter.type_effect("...")
     
@@ -67,6 +69,6 @@ def credits():
     
 #since isPlaying is set to True, it will execute the while loop and will continue to do so until it is set to False
 
-isPlaying = True
-while isPlaying:
-    startGame()
+is_playing = True
+while is_playing:
+    start_game()
