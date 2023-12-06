@@ -145,6 +145,7 @@ class Game1:
         move_counter = 0
 
         while in_game:
+            self.check_health()
             # Print the map
             self.print_island_map(island_map)
 
@@ -155,18 +156,17 @@ class Game1:
             island_map, player_x, player_y, enemy_x, enemy_y, move_counter = self.move_player(
                 island_map, player_x, player_y, enemy_x, enemy_y, move_direction, move_counter
             )
+            
 
-            if not in_game:
-                input("Press enter to return to Main Menu...")
-                Typewriter.type_effect("...")
-                print()
-                print()
+        if not in_game:
+            input("Press enter to return to Main Menu...")
+            Typewriter.type_effect("...")
+            print()
+            print()
 
-                import main
-                main
-
-                break
-                # go back to main menu
+            import main
+            main
+            # go back to main menu
 
     def generate_island_map(self, width, height):
 
@@ -341,14 +341,15 @@ class Game1:
                     player_stats['hp'] += surprise[random_surprise]
 
 
-        # Check for combat every 7 moves
-        move_counter += 1
-        if move_counter % 7 == 0:
+        move_counter += random.randint(1,8)
+        if move_counter >= 20:
 
             while(True):
+                self.check_health()
                 play_game = input("The enemy is eager for a clash! Will you engage in a combat? [Y/N] ").lower()
 
                 if(play_game == 'y'):
+                    move_counter = 0
                     print("\n=======================================================================================")
                     print()
                     print(">>>   COMBAT BEGINS!  <<<")
@@ -364,6 +365,7 @@ class Game1:
                     break
                 elif(play_game == 'n'):
                     Typewriter.type_effect("Opting for a strategic retreat...")
+                    move_counter = 0
                     time.sleep(1)
                     break
                 else:
@@ -380,6 +382,9 @@ class Game1:
 
         in_combat = True
         while in_combat:
+            if player_stats['hp'] <= 0:
+                player_stats['hp'] = 0
+                break
             self.player_attack(enemy_stats)
             player_attack_count += 1
             # after attacking the enemy, increase player_attack_count
@@ -407,31 +412,38 @@ class Game1:
                     Typewriter.type_effect("\nContinuing combat...")
                     time.sleep(1)
                     break
-            
+                    # Simulate enemy's turn
             if enemy_stats['hp'] <= 0:
-                print()
-                print(" ============================================ ")
-                print("||  You defeated the enemy. CONGRATULATIONS! ||")
-                print(" ============================================ ")
-                print("\n")
-                
-                in_game = False
-                in_combat = False
                 break
-
-            # Simulate enemy's turn
-            self.enemy_attack(player_stats, enemy_stats)
-
             if player_stats['hp'] <= 0:
-                print()
-                print(" ======================================== ")
-                print("||  You have been defeated. GAME OVER.  ||")
-                print(" ======================================== ")
-                print("\n")
-                
-                in_game = False
-                in_combat = False
+                player_stats['hp'] = 0
                 break
+            self.enemy_attack(player_stats, enemy_stats)
+            
+    
+    def check_health(self):
+        global in_game, in_combat
+        
+        if enemy_stats['hp'] == 0:
+            print()
+            print(" ============================================ ")
+            print("||  You defeated the enemy. CONGRATULATIONS! ||")
+            print(" ============================================ ")
+            print("\n")
+            
+            in_game = False
+            in_combat = False
+
+
+        if player_stats['hp'] == 0:
+            print()
+            print(" ======================================== ")
+            print("||  You have been defeated. GAME OVER.  ||")
+            print(" ======================================== ")
+            print("\n")
+            
+            in_game = False
+            in_combat = False
     
     def enemy_attack(self, player_stats, enemy_stats):
         global in_game
@@ -439,7 +451,9 @@ class Game1:
         # Simulate enemy attacking player
         damage = random.randint(8, 20) #the damage the enemy inflict on you will be between 8 to 20
         player_stats['hp'] -= damage
-
+        if player_stats['hp'] <= 0:
+            player_stats['hp'] = 0
+            
         print()
 
         Typewriter.type_effect("...")
@@ -451,22 +465,24 @@ class Game1:
         
         time.sleep(1)
 
+
         print()
         print(" ================ ")
         print("||  HP STATUS:  ||")
         print(" ================ ")
         print(f"Your remaining HP: [{player_stats['hp']}]")
         print(f"Enemy HP: [{enemy_stats['hp']}]")
-
+        
         if player_stats['hp'] <= 0:
-            print()
-            print(" ======================================== ")
-            print("||  You have been defeated. GAME OVER.  ||")
-            print(" ======================================== ")
-            in_game = False
+            player_stats['hp'] = 0
+            self.check_health()
+
 
     def player_attack(self, enemy_stats):
         global in_game
+        if player_stats['hp'] <= 0:
+            player_stats['hp'] = 0
+            in_game = False
 
         print()
         print("+--------------------------------+")
@@ -475,7 +491,7 @@ class Game1:
         print("  1.        Chi Strike            ")
         print("  2.   Artificial Hand Blast      ")
         print("  3.    Baseball Bat Attack       ")
-        print("  4      Berserker Combat         ")
+        print("  4.     Berserker Combat         ")
         print("+--------------------------------+")
 
         choice = input("  What's your attack?: ")
@@ -484,21 +500,37 @@ class Game1:
             #chi strike
             damage = random.randint(10, 20)
             enemy_stats['hp'] -= damage
+            if enemy_stats['hp'] <= 0:
+                enemy_stats['hp'] = 0
+            if player_stats['hp'] <= 0:
+                player_stats['hp'] = 0
             print(f"\n>> You attacked with Chi Strike! Enemy takes [{damage}] damage.")
         elif choice == '2':
             #artificial hand blast
             damage = random.randint(8, 15)
             enemy_stats['hp'] -= damage
+            if enemy_stats['hp'] <= 0:
+                enemy_stats['hp'] = 0
+            if player_stats['hp'] <= 0:
+                player_stats['hp'] = 0 
             print(f"\n>> You attacked with Articifical Hand Blast! Enemy takes [{damage}] damage.")
         elif choice == '3':
             #baseball bat attack
             damage = random.randint(10, 15)
             enemy_stats['hp'] -= damage
+            if enemy_stats['hp'] <= 0:
+                enemy_stats['hp'] = 0
+            if player_stats['hp'] <= 0:
+                player_stats['hp'] = 0
             print(f"\n>> You attacked with Baseball Bat Attack! Enemy takes [{damage}] damage.")
         elif choice == '4':
             #berserker combat
             damage = random.randint(15, 25)
             enemy_stats['hp'] -= damage
+            if enemy_stats['hp'] <= 0:
+                enemy_stats['hp'] = 0
+            if player_stats['hp'] <= 0:
+                player_stats['hp'] = 0
             print(f"\n>> You attacked with Berserker Combat! Enemy takes [{damage}] damage.")
         elif choice == 'quit':
             print()
@@ -521,3 +553,4 @@ class Game1:
         print(" ================ ")
         print(f"Your remaining HP: [{player_stats['hp']}]")
         print(f"Enemy HP: [{enemy_stats['hp']}]") 
+        self.check_health()
