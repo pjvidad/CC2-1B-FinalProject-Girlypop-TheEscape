@@ -25,8 +25,7 @@ def start_game():
     user_input = input("Enter an option: ")
 
     if user_input == '1':
-        games = (Game1, Game2)
-        random.choice(games)()
+        Game1()
     elif user_input == '2':
         credits()
     elif user_input == '3':
